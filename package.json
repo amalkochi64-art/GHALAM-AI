@@ -1,0 +1,19 @@
+{
+  "name": "ghalam-ai",
+  "version": "1.0.0",
+  "private": true,
+  "description": "GHALAM AI Automation Platform",
+  "scripts": {
+    "dev": "echo Starting GHALAM AI...",
+    "build": "echo Building GHALAM AI...",
+    "test": "echo Running tests..."
+  },
+  "workspaces": [
+    "apps/*",
+    "packages/*",
+    "agents/*"
+  ],
+  "devDependencies": {
+    "typescript": "^5.0.0"
+  }
+}
