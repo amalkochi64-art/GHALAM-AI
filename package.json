@@ -3,16 +3,19 @@
   "version": "1.0.0",
   "private": true,
   "description": "GHALAM AI Automation Platform",
+
   "scripts": {
-    "dev": "echo Starting GHALAM AI...",
-    "build": "echo Building GHALAM AI...",
+    "dev": "tsx app.ts",
+    "build": "tsc",
     "test": "echo Running tests..."
   },
+
   "workspaces": [
     "apps/*",
     "packages/*",
     "agents/*"
   ],
+
   "devDependencies": {
     "tsx": "^4.22.4",
     "typescript": "^5.0.0"
