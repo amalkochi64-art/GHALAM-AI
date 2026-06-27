@@ -1,0 +1,38 @@
+import { salesPrompt } from "./prompts";
+import { salesRules } from "./rules";
+
+
+interface SalesInput {
+    customerMessage: string;
+}
+
+
+function runSalesAgent(input: SalesInput) {
+
+    return {
+
+        agent: "GHALAM Sales Agent",
+
+        customerMessage:
+            input.customerMessage,
+
+        instructions:
+            salesPrompt,
+
+        rules:
+            salesRules,
+
+        response:
+            "سلام، من دستیار فروش هوشمند قلم هستم. برای انتخاب بهترین صندلی و تجهیزات اداری در خدمت شما هستم."
+
+    };
+
+}
+
+
+console.log(
+    runSalesAgent({
+        customerMessage:
+            "برای دفتر مدیریت یک صندلی حرفه‌ای می‌خواهم"
+    })
+);

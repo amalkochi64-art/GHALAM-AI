@@ -1,0 +1,12 @@
+{
+  "name": "ghalam-sales-agent",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "tsx src/agent.ts"
+  },
+  "dependencies": {
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2"
+  }
+}
