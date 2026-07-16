@@ -1,25 +1,11 @@
-export class SalesExecutor {
+export async function executeSalesFlow(data: any) {
 
-    execute(input:{
-        userId:string;
-        message:string;
-    }){
-
-        return {
-
-            agent:"SALES_AGENT",
-
-            userId:input.userId,
-
-            status:"READY",
-
-            action:"CREATE_SALES_RESPONSE",
-
-            response:
-            "درخواست فروش دریافت شد. در حال بررسی محصول، قیمت و شرایط مشتری هستیم."
-
-        };
-
-    }
+    return {
+        agent: "sales-agent",
+        status: "EXECUTED",
+        action: "SALES_RESPONSE_READY",
+        input: data,
+        timestamp: new Date()
+    };
 
 }
