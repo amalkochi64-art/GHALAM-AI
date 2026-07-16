@@ -37,7 +37,7 @@ new SalesExecutor();
 
 
 
-process(input:{
+async process(input:{
 userId:string;
 message:string;
 }){
@@ -68,7 +68,7 @@ approval.approved===false
 ){
 
 execution =
-this.salesExecutor.execute(input);
+await this.salesExecutor.execute(input);
 
 }
 

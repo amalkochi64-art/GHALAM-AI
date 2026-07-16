@@ -9,7 +9,9 @@ console.log(
 const ai = new AIOrchestrator();
 
 
-const result = ai.process({
+async function main(){
+
+const result = await ai.process({
 
  userId:"001",
 
@@ -19,3 +21,8 @@ const result = ai.process({
 
 
 console.log(result);
+
+}
+
+
+main();
