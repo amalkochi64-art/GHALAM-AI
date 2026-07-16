@@ -1,11 +1,15 @@
-export async function executeSalesFlow(data:any){
+export class SalesExecutor {
 
-    return {
-        agent:"sales-agent",
-        status:"EXECUTED",
-        action:"START_SALES_RESPONSE",
-        data,
-        timestamp:new Date()
-    };
+    async execute(input: any) {
+
+        return {
+            agent: "sales-agent",
+            status: "EXECUTED",
+            action: "START_SALES_FLOW",
+            input,
+            timestamp: new Date()
+        };
+
+    }
 
 }
