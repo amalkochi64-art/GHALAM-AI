@@ -1,14 +1,21 @@
-import { DecisionEngine } from "../decision-engine/decision-engine";
-import { ApprovalEngine } from "../approval/approval-engine";
-import { MemoryStore } from "../memory/memory-store";
+import { DecisionEngine } 
+from "../decision-engine/decision-engine";
+
+import { ApprovalEngine } 
+from "../approval/approval-engine";
+
+import { SalesExecutor } 
+from "../../agents/sales-agent/execution/sales-executor";
 
 
 export class AIOrchestrator {
 
 
 private decisionEngine:DecisionEngine;
+
 private approvalEngine:ApprovalEngine;
-private memory:MemoryStore;
+
+private salesExecutor:SalesExecutor;
 
 
 
@@ -22,8 +29,8 @@ this.approvalEngine =
 new ApprovalEngine();
 
 
-this.memory =
-new MemoryStore();
+this.salesExecutor =
+new SalesExecutor();
 
 
 }
@@ -50,37 +57,55 @@ decision
 
 
 
-const result={
+let execution:any = null;
+
+
+
+if(
+decision.intent==="SALE"
+&&
+approval.approved===false
+){
+
+execution =
+this.salesExecutor.execute(input);
+
+}
+
+
+
+return {
+
 
 userId:
 input.userId,
 
+
 message:
 input.message,
 
+
 decision,
 
+
 approval,
+
+
+execution,
+
 
 status:
 "PROCESSED",
 
+
 timestamp:
 new Date()
+
 
 };
 
 
-
-this.memory.save(result);
-
-
-
-return result;
-
-
 }
-
 
 
 }

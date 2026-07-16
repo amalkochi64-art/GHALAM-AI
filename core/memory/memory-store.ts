@@ -1,24 +1,25 @@
-export class MemoryStore {
+export class SalesExecutor {
 
-    private memory:any[] = [];
+    execute(input:{
+        userId:string;
+        message:string;
+    }){
 
+        return {
 
-    save(data:any){
+            agent:"SALES_AGENT",
 
-        this.memory.push({
-            ...data,
-            createdAt:new Date()
-        });
+            userId:input.userId,
+
+            status:"READY",
+
+            action:"CREATE_SALES_RESPONSE",
+
+            response:
+            "درخواست فروش دریافت شد. در حال بررسی محصول، قیمت و شرایط مشتری هستیم."
+
+        };
 
     }
-
-
-
-    getAll(){
-
-        return this.memory;
-
-    }
-
 
 }
