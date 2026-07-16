@@ -1,0 +1,31 @@
+import { DecisionEngine } from "../decision-engine/decision-engine";
+
+export class AIOrchestrator {
+
+  private decisionEngine: DecisionEngine;
+
+  constructor() {
+    this.decisionEngine = new DecisionEngine();
+  }
+
+
+  process(input: {
+    userId: string;
+    message: string;
+  }) {
+
+    const decision =
+      this.decisionEngine.analyze(
+        input.message
+      );
+
+
+    return {
+      userId: input.userId,
+      decision,
+      status: "PROCESSED",
+      timestamp: new Date()
+    };
+  }
+
+}

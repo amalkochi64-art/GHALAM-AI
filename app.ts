@@ -1,56 +1,21 @@
-import { CustomerBrain } from "./core/ai-agent/customer-brain";
-import { SalesEngine } from "./core/sales-agent/sales-engine";
-
-console.log("🚀 GHALAM AI CORE ONLINE");
-
-const customerBrain = new CustomerBrain();
-
-const salesEngine = new SalesEngine();
-
-console.log({
-  system: "GHALAM AI Automation Platform",
-  status: "ACTIVE",
-  modules: [
-    "Customer Brain",
-    "Sales Engine",
-    "AI Agent"
-  ]
-});export interface CustomerProfile {
-  id: string;
-  name: string;
-  phone?: string;
-
-  interests: string[];
-
-  purchaseHistory: {
-    product: string;
-    amount: number;
-    date: string;
-  }[];
-
-  behaviorScore: number;
-
-  preferredChannel:
-    | "whatsapp"
-    | "instagram"
-    | "phone"
-    | "store";
-}
+import { AIOrchestrator } from "./core/orchestrator/ai-orchestrator";
 
 
-export function createCustomerProfile(
-  data: CustomerProfile
-) {
+console.log(
+"🚀 GHALAM AI CORE ONLINE"
+);
 
-  return {
-    ...data,
 
-    createdAt: new Date(),
+const ai = new AIOrchestrator();
 
-    intelligenceLevel:
-      data.behaviorScore > 80
-        ? "high-value"
-        : "normal"
-  };
 
-}
+const result = ai.process({
+
+ userId:"001",
+
+ message:"قیمت صندلی مدیریتی چنده؟"
+
+});
+
+
+console.log(result);
