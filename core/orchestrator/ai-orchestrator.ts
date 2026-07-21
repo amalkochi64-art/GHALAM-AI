@@ -1,8 +1,7 @@
 import { DecisionEngine } from "../decision-engine/decision-engine";
 import { ApprovalEngine } from "../approval/approval-engine";
 import { SalesExecutor } from "../../agents/sales-agent/execution/sales-executor";
-import { CustomerService } from "../memory/customer/customer-service";
-
+import { CustomerService } from "../customer-intelligence/service/customer-service";
 
 export class AIOrchestrator {
 
