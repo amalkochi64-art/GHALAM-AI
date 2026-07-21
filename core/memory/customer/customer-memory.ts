@@ -1,89 +1,82 @@
-export interface CustomerMemory {
+export interface CustomerProfile {
+
     id: string;
-    name?: string;
-    phone?: string;
+
+    name: string;
+
     interests: string[];
+
     budget?: string;
-    lastMessage?: string;
+
     purchaseStage:
-        | "NEW"
-        | "INTERESTED"
-        | "HOT_LEAD"
-        | "CUSTOMER";
+    | "NEW"
+    | "INTERESTED"
+    | "HOT_LEAD"
+    | "CUSTOMER";
 
     score: number;
 
     createdAt: Date;
+
     updatedAt: Date;
+
 }
 
 
-export class CustomerMemoryStore {
 
-    private customers: Map<string, CustomerMemory> = new Map();
+export class CustomerMemory {
 
 
-    save(customer: CustomerMemory) {
+    private customers: CustomerProfile[] = [];
 
-        customer.updatedAt = new Date();
 
-        this.customers.set(
-            customer.id,
-            customer
+
+    save(customer: CustomerProfile) {
+
+        const index =
+        this.customers.findIndex(
+            c => c.id === customer.id
         );
 
-        return customer;
-    }
 
+        if(index >= 0){
 
-    get(id:string){
+            this.customers[index] = {
+                ...customer,
+                updatedAt:new Date()
+            };
 
-        return this.customers.get(id);
+        }
+        else{
 
-    }
-
-
-    update(
-        id:string,
-        data:Partial<CustomerMemory>
-    ){
-
-        const customer = this.customers.get(id);
-
-
-        if(!customer){
-
-            throw new Error(
-                "Customer not found"
-            );
+            this.customers.push(customer);
 
         }
 
 
-        const updated={
-            ...customer,
-            ...data,
-            updatedAt:new Date()
-        };
-
-
-        this.customers.set(
-            id,
-            updated
-        );
-
-
-        return updated;
+        return customer;
 
     }
+
+
+
+
+    get(id:string){
+
+        return this.customers.find(
+            c=>c.id===id
+        );
+
+    }
+
+
 
 
     getAll(){
 
-        return Array.from(
-            this.customers.values()
-        );
+        return this.customers;
 
     }
+
 
 }

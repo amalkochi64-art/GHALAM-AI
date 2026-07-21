@@ -1,121 +1,39 @@
 import {
-CustomerMemoryStore,
-CustomerMemory
-} from "./customer-memory";
-
-
-import {
-CustomerScoring
-} from "./customer-scoring";
-
-
-
-export class CustomerMemoryService {
-
-
-private memory =
-new CustomerMemoryStore();
-
-
-private scoring =
-new CustomerScoring();
-
-
-
-process(
-userId:string,
-message:string
-){
-
-
-let customer =
-this.memory.get(userId);
-
-
-
-if(!customer){
-
-
-customer =
-this.memory.save({
-
-id:userId,
-
-interests:
-[],
-
-lastMessage:
-message,
-
-purchaseStage:
-"NEW",
-
-score:0,
-
-createdAt:
-new Date(),
-
-updatedAt:
-new Date()
-
-});
-
-
+    CustomerMemory,
+    CustomerProfile
 }
+from "./customer-memory";
 
 
 
-customer.lastMessage =
-message;
+export class CustomerService {
+
+
+    private memory:CustomerMemory;
 
 
 
-if(message.includes("میز")){
+    constructor(){
 
-customer.interests.push(
-"میز مدیریت"
-);
+        this.memory = new CustomerMemory();
 
-}
+    }
 
 
 
-if(message.includes("صندلی")){
+    getCustomer(id:string){
 
-customer.interests.push(
-"صندلی اداری"
-);
+        return this.memory.get(id);
 
-}
+    }
 
 
 
-customer.score =
-this.scoring.calculate(customer);
+    saveCustomer(customer:CustomerProfile){
 
+        return this.memory.save(customer);
 
-
-if(customer.score>=70){
-
-customer.purchaseStage=
-"HOT_LEAD";
-
-}
-
-
-
-return this.memory.save(customer);
-
-
-}
-
-
-
-getAll(){
-
-return this.memory.getAll();
-
-}
+    }
 
 
 }
