@@ -15,13 +15,13 @@ const result = await ai.process({
 
  userId:"001",
 
- message:"قیمت صندلی مدیریتی چنده؟"
+ message:"قیمت میز مدیریت"
 
 });
 
 
-console.log(result);
 
+console.dir(result, { depth: null });
 }
 
 

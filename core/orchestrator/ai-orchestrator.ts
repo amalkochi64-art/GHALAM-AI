@@ -1,111 +1,66 @@
-import { DecisionEngine } 
-from "../decision-engine/decision-engine";
-
-import { ApprovalEngine } 
-from "../approval/approval-engine";
-
-import { SalesExecutor } 
-from "../../agents/sales-agent/execution/sales-executor";
+import { DecisionEngine } from "../decision-engine/decision-engine";
+import { ApprovalEngine } from "../approval/approval-engine";
+import { SalesExecutor } from "../../agents/sales-agent/execution/sales-executor";
 
 
 export class AIOrchestrator {
 
-
-private decisionEngine:DecisionEngine;
-
-private approvalEngine:ApprovalEngine;
-
-private salesExecutor:SalesExecutor;
+    private decisionEngine;
+    private approvalEngine;
+    private salesExecutor;
 
 
+    constructor() {
 
-constructor(){
+        this.decisionEngine = new DecisionEngine();
+        this.approvalEngine = new ApprovalEngine();
+        this.salesExecutor = new SalesExecutor();
 
-this.decisionEngine =
-new DecisionEngine();
-
-
-this.approvalEngine =
-new ApprovalEngine();
+    }
 
 
-this.salesExecutor =
-new SalesExecutor();
+    async process(input: {
+        userId: string;
+        message: string;
+    }) {
 
 
-}
+        const decision =
+            this.decisionEngine.analyze(input.message);
 
 
 
-async process(input:{
-userId:string;
-message:string;
-}){
-
-
-const decision =
-this.decisionEngine.analyze(
-input.message
-);
+        const approval =
+            this.approvalEngine.check(decision);
 
 
 
-const approval =
-this.approvalEngine.check(
-decision
-);
+        const execution =
+            await this.salesExecutor.execute({
+                userId: input.userId,
+                message: input.message
+            });
 
 
 
-let execution:any = null;
+        return {
 
+            userId: input.userId,
 
+            message: input.message,
 
-if(
-decision.intent==="SALE"
-&&
-approval.approved===false
-){
+            decision,
 
-execution =
-await this.salesExecutor.execute(input);
+            approval,
 
-}
+            execution,
 
+            status: "PROCESSED",
 
+            timestamp: new Date()
 
-return {
+        };
 
-
-userId:
-input.userId,
-
-
-message:
-input.message,
-
-
-decision,
-
-
-approval,
-
-
-execution,
-
-
-status:
-"PROCESSED",
-
-
-timestamp:
-new Date()
-
-
-};
-
-
-}
-
+    }
 
 }
