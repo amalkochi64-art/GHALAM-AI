@@ -1,66 +1,78 @@
 import { DecisionEngine } from "../decision-engine/decision-engine";
 import { ApprovalEngine } from "../approval/approval-engine";
 import { SalesExecutor } from "../../agents/sales-agent/execution/sales-executor";
+import { CustomerService } from "../memory/customer/customer-service";
 
 
 export class AIOrchestrator {
 
-    private decisionEngine;
-    private approvalEngine;
-    private salesExecutor;
+private decisionEngine;
+private approvalEngine;
+private salesExecutor;
+private customerService;
 
 
-    constructor() {
+constructor(){
 
-        this.decisionEngine = new DecisionEngine();
-        this.approvalEngine = new ApprovalEngine();
-        this.salesExecutor = new SalesExecutor();
+this.decisionEngine = new DecisionEngine();
 
-    }
+this.approvalEngine = new ApprovalEngine();
 
+this.salesExecutor = new SalesExecutor();
 
-    async process(input: {
-        userId: string;
-        message: string;
-    }) {
+this.customerService = new CustomerService();
 
-
-        const decision =
-            this.decisionEngine.analyze(input.message);
+}
 
 
 
-        const approval =
-            this.approvalEngine.check(decision);
+async process(input:any){
+
+
+const customer =
+this.customerService.getCustomer(input.userId);
 
 
 
-        const execution =
-            await this.salesExecutor.execute({
-                userId: input.userId,
-                message: input.message
-            });
+const decision =
+this.decisionEngine.analyze(
+input.message
+);
 
 
 
-        return {
+const approval =
+this.approvalEngine.check(
+decision
+);
 
-            userId: input.userId,
 
-            message: input.message,
 
-            decision,
+const execution =
+await this.salesExecutor.execute(
+input
+);
 
-            approval,
 
-            execution,
 
-            status: "PROCESSED",
+return {
 
-            timestamp: new Date()
+customer,
 
-        };
+decision,
 
-    }
+approval,
+
+execution,
+
+status:"PROCESSED",
+
+timestamp:new Date()
+
+};
+
+
+}
+
 
 }
