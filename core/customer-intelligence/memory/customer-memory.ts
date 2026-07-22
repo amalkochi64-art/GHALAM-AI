@@ -1,117 +1,74 @@
-import { CustomerProfile } from "../models/customer-profile";
+export interface CustomerProfile {
+    id: string;
+    name?: string;
+    interests: string[];
+    budget?: string;
+    purchaseStage?: string;
+    score?: number;
+    createdAt: Date;
+    updatedAt: Date;
+}
 
 
 export class CustomerMemory {
 
-private customers:Map<string,CustomerProfile>
-=new Map();
+    private customers = new Map<string, CustomerProfile>();
 
 
+    save(customer: CustomerProfile) {
 
-save(customer:CustomerProfile){
+        this.customers.set(customer.id, {
+            ...customer,
+            updatedAt: new Date()
+        });
 
-this.customers.set(
-customer.id,
-customer
-);
-
-return customer;
-
-}
-
-
-
-find(id:string){
-
-return this.customers.get(id);
-
-}
-
-
-
-update(
-id:string,
-data:Partial<CustomerProfile>
-){
-
-const old=this.customers.get(id);
-
-if(!old)
-return undefined;
-
-
-const updated={
-...old,
-...data,
-updatedAt:new Date()
-};
-
-
-this.customers.set(
-id,
-updated
-);
-
-
-return updated;
-
-}
-
-
-
-getAll(){
-
-return Array.from(
-this.customers.values()
-);
-
-}
-
-}private customers = new Map<string, any>();
-
-
-save(customer:any){
-
-    this.customers.set(
-        customer.id,
-        customer
-    );
-
-    return customer;
-}
-
-
-get(id:string){
-
-    return this.customers.get(id);
-}
-
-
-update(id:string,data:any){
-
-    const old = this.customers.get(id);
-
-    if(!old){
-        return null;
+        return customer;
     }
 
 
-    const updated = {
-        ...old,
-        ...data,
-        updatedAt:new Date()
-    };
+    get(id:string){
+
+        return this.customers.get(id);
+
+    }
 
 
-    this.customers.set(id,updated);
+    find(id:string){
 
-    return updated;
-}
+        return this.customers.get(id);
+
+    }
 
 
-all(){
+    update(id:string,data:Partial<CustomerProfile>){
 
-    return Array.from(
-        this.customers.values()
-    );
+        const customer=this.customers.get(id);
+
+
+        if(!customer){
+            return undefined;
+        }
+
+
+        const updated={
+            ...customer,
+            ...data,
+            updatedAt:new Date()
+        };
+
+
+        this.customers.set(id,updated);
+
+
+        return updated;
+
+    }
+
+
+    all(){
+
+        return Array.from(this.customers.values());
+
+    }
+
 }
