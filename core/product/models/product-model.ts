@@ -1,23 +1,17 @@
 export interface Product {
 
-    id: string;
+id:string;
 
-    name: string;
+name:string;
 
-    category: string;
+category:string;
 
-    brand?: string;
+price:number;
 
-    description: string;
+stock:number;
 
-    price: number;
+sales?:number;
 
-    stock: number;
-
-    features: string[];
-
-    tags: string[];
-
-    status: "ACTIVE" | "INACTIVE";
+popularity?:number;
 
 }

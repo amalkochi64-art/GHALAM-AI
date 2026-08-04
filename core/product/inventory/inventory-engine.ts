@@ -1,32 +1,33 @@
-import { Product } from "../../models/product-model";
+import { Product } from "../models/product-model";
+
 
 export class InventoryEngine {
 
 
-    checkStock(product:Product){
+checkStock(product:Product){
 
 
-        return {
+return {
 
-            productId:product.id,
+productId:product.id,
 
-            productName:product.name,
+name:product.name,
 
-            stock:product.stock,
+stock:product.stock,
 
-            available:product.stock > 0
+available:product.stock > 0
 
-        };
-
-    }
+};
 
 
+}
 
-    isAvailable(product:Product):boolean{
 
-        return product.stock > 0;
+isAvailable(product:Product):boolean{
 
-    }
+return product.stock > 0;
+
+}
 
 
 }

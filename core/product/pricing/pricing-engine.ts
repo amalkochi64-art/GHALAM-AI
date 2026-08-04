@@ -4,23 +4,23 @@ import { Product } from "../models/product-model";
 export class PricingEngine {
 
 
-    calculate(product:Product){
+calculate(product:Product){
 
 
-        return {
+return {
 
-            productId:product.id,
+productId:product.id,
 
-            price:product.price,
+price:product.price,
 
-            discount:0,
+discount:0,
 
-            finalPrice:product.price
+finalPrice:product.price
 
-        };
+};
 
 
-    }
+}
 
 
 }

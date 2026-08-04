@@ -1,15 +1,15 @@
 export interface ProductIntelligence {
 
-    productId:string;
+productId:string;
 
-    popularity:number;
+popularity:number;
 
-    demandScore:number;
+demandScore:number;
 
-    salesScore:number;
+salesScore:number;
 
-    recommendationScore:number;
+recommendationScore:number;
 
-    finalScore:number;
+finalScore:number;
 
 }

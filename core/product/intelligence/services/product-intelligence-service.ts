@@ -1,39 +1,44 @@
 import { ProductIntelligence } from "../models/product-intelligence-model";
+import { Product } from "../../models/product-model";
+
 
 export class ProductIntelligenceService {
 
 
-    analyze(product:any):ProductIntelligence {
+analyze(product:Product):ProductIntelligence {
 
 
-        const popularity = product.sales ?? 0;
-
-        const demandScore = popularity * 0.4;
-
-        const salesScore = popularity * 0.3;
-
-        const recommendationScore = popularity * 0.3;
+const popularity = product.sales ?? 0;
 
 
-        return {
+const demandScore = popularity * 0.4;
 
-            productId: product.id,
+const salesScore = popularity * 0.3;
 
-            popularity,
+const recommendationScore = popularity * 0.3;
 
-            demandScore,
 
-            salesScore,
+return {
 
-            recommendationScore,
+productId:product.id,
 
-            finalScore:
-                demandScore +
-                salesScore +
-                recommendationScore
-        };
+popularity,
 
-    }
+demandScore,
+
+salesScore,
+
+recommendationScore,
+
+finalScore:
+demandScore +
+salesScore +
+recommendationScore
+
+};
+
+
+}
 
 
 }
