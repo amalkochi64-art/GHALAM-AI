@@ -1,11 +1,35 @@
 export class ApprovalEngine {
 
+    private approved = false;
+
+
+    approve(){
+
+        this.approved = true;
+
+        return {
+            approved:true,
+            message:"Owner approved"
+        };
+
+    }
+
+
+    reject(){
+
+        this.approved = false;
+
+        return {
+            approved:false,
+            message:"Owner rejected"
+        };
+
+    }
+
 
     check(decision:any){
 
-
-        if(decision.requiresApproval){
-
+        if(decision.requiresApproval && !this.approved){
 
             return {
 
@@ -19,18 +43,15 @@ export class ApprovalEngine {
         }
 
 
-
         return {
 
             approved:true,
 
             message:
-            "Auto approved"
+            "Approved"
 
         };
 
-
     }
-
 
 }
