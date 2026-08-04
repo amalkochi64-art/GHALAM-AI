@@ -1,3 +1,6 @@
+import { CustomerProfile } from "../customer-intelligence/models/customer-profile";
+
+
 export class SalesEngine {
 
     constructor() {
@@ -5,41 +8,80 @@ export class SalesEngine {
     }
 
 
-    start(customer:any) {
+    start(customer: CustomerProfile) {
 
         return {
 
             status: "ACTIVE",
 
-            customer,
+            customer: {
+                id: customer.id,
+                name: customer.name
+            },
 
-            message: "Sales flow started"
+            salesFlow: {
+
+                currentStage: "NEW_LEAD",
+
+                nextStep: "CUSTOMER_ANALYSIS"
+
+            }
 
         };
 
     }
 
 
-    createOffer(product:any) {
+    analyze(customer: CustomerProfile) {
+
+        let score = 0;
+
+
+        if(customer.budget) {
+            score += 30;
+        }
+
+
+        if(customer.interests?.length) {
+            score += 40;
+        }
+
+
+        if(customer.purchaseStage) {
+            score += 30;
+        }
+
+
+        return {
+
+            customerId: customer.id,
+
+            score,
+
+            status:
+
+                score >= 70
+                ? "HOT_LEAD"
+                :
+                score >= 40
+                ? "WARM_LEAD"
+                :
+                "COLD_LEAD"
+
+        };
+
+    }
+
+
+    createOffer(product:string, price:number) {
 
         return {
 
             product,
 
-            status: "OFFER_CREATED"
+            price,
 
-        };
-
-    }
-
-
-    closeSale(order:any) {
-
-        return {
-
-            order,
-
-            status: "SALE_COMPLETED"
+            status:"PENDING_APPROVAL"
 
         };
 
