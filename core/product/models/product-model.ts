@@ -14,4 +14,11 @@ sales?:number;
 
 popularity?:number;
 
+tags?:string[];
+
+description?:string;
+
+brand?:string;
+
 }
+
