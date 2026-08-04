@@ -1,28 +1,19 @@
-import { AIOrchestrator } from "./core/orchestrator/ai-orchestrator";
+import { AIKernel } from "./core/kernel/ai-kernel";
 
 
-console.log(
-"🚀 GHALAM AI CORE ONLINE"
-);
+const kernel = new AIKernel();
 
 
-const ai = new AIOrchestrator();
 
+const result = kernel.run({
 
-async function main(){
+    userId:"001",
 
-const result = await ai.process({
-
- userId:"001",
-
- message:"قیمت میز مدیریت"
+    message:
+    "قیمت صندلی مدیریتی چنده؟"
 
 });
 
 
 
-console.dir(result, { depth: null });
-}
-
-
-main();
+console.log(result);
