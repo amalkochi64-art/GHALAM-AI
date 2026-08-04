@@ -1,100 +1,106 @@
+export type ApprovalStatus =
+    | "PENDING"
+    | "APPROVED"
+    | "REJECTED";
+
+
+export interface ApprovalRequest {
+
+    id:string;
+
+    action:string;
+
+    status:ApprovalStatus;
+
+    createdAt:string;
+
+}
+
+
+
 export class ApprovalService {
 
 
-    private approvals:any[] = [];
+    private requests:ApprovalRequest[] = [];
 
 
-    create(request:any){
 
-        const approval = {
+    create(action:string){
 
-            id: Date.now(),
 
-            request,
+        const request:ApprovalRequest = {
+
+            id:Date.now().toString(),
+
+            action,
 
             status:"PENDING",
 
-            createdAt:new Date()
+            createdAt:new Date().toISOString()
 
         };
 
 
-        this.approvals.push(approval);
+        this.requests.push(request);
 
 
-        return approval;
+        return request;
 
     }
 
 
 
-    approve(id:number){
+    approve(id:string){
 
-        const item = this.approvals.find(
-            x=>x.id===id
+
+        const request = this.requests.find(
+            item => item.id === id
         );
 
 
-        if(!item){
+        if(!request){
 
-            return {
-                success:false,
-                message:"Approval not found"
-            };
+            return null;
 
         }
 
 
-        item.status="APPROVED";
+        request.status="APPROVED";
 
 
-        return {
-
-            success:true,
-
-            approval:item
-
-        };
+        return request;
 
     }
 
 
 
+    reject(id:string){
 
-    reject(id:number){
 
-        const item=this.approvals.find(
-            x=>x.id===id
+        const request = this.requests.find(
+            item => item.id === id
         );
 
 
-        if(!item){
+        if(!request){
 
-            return {
-                success:false
-            };
+            return null;
 
         }
 
 
-        item.status="REJECTED";
+        request.status="REJECTED";
 
 
-        return {
-
-            success:true,
-
-            approval:item
-
-        };
+        return request;
 
     }
 
 
 
-    list(){
+    getAll(){
 
-        return this.approvals;
+        return this.requests;
 
     }
 
