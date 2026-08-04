@@ -1,73 +1,32 @@
-export interface CustomerProfile {
-    id: string;
-    name?: string;
-    interests: string[];
-    budget?: string;
-    purchaseStage?: string;
-    score?: number;
-    createdAt: Date;
-    updatedAt: Date;
-}
+import { CustomerProfile } from "../models/customer-profile";
 
 
 export class CustomerMemory {
 
-    private customers = new Map<string, CustomerProfile>();
+    private customers: CustomerProfile[] = [];
 
 
     save(customer: CustomerProfile) {
 
-        this.customers.set(customer.id, {
-            ...customer,
-            updatedAt: new Date()
-        });
+        this.customers.push(customer);
 
         return customer;
-    }
-
-
-    get(id:string){
-
-        return this.customers.get(id);
 
     }
 
 
-    find(id:string){
+    find(id: string) {
 
-        return this.customers.get(id);
-
-    }
-
-
-    update(id:string,data:Partial<CustomerProfile>){
-
-        const customer=this.customers.get(id);
-
-
-        if(!customer){
-            return undefined;
-        }
-
-
-        const updated={
-            ...customer,
-            ...data,
-            updatedAt:new Date()
-        };
-
-
-        this.customers.set(id,updated);
-
-
-        return updated;
+        return this.customers.find(
+            customer => customer.id === id
+        );
 
     }
 
 
-    all(){
+    getAll() {
 
-        return Array.from(this.customers.values());
+        return this.customers;
 
     }
 

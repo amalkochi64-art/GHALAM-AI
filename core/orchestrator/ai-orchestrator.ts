@@ -1,77 +1,49 @@
+
 import { DecisionEngine } from "../decision-engine/decision-engine";
 import { ApprovalEngine } from "../approval/approval-engine";
 import { SalesExecutor } from "../../agents/sales-agent/execution/sales-executor";
-import { CustomerService } from "../customer-intelligence/service/customer-service";
 
 export class AIOrchestrator {
 
-private decisionEngine;
-private approvalEngine;
-private salesExecutor;
-private customerService;
+    private decisionEngine: DecisionEngine;
+    private approvalEngine: ApprovalEngine;
+    private salesExecutor: SalesExecutor;
 
 
-constructor(){
+    constructor(){
 
-this.decisionEngine = new DecisionEngine();
+        this.decisionEngine = new DecisionEngine();
+        this.approvalEngine = new ApprovalEngine();
+        this.salesExecutor = new SalesExecutor();
 
-this.approvalEngine = new ApprovalEngine();
-
-this.salesExecutor = new SalesExecutor();
-
-this.customerService = new CustomerService();
-
-}
+    }
 
 
+    process(input:any){
 
-async process(input:any){
-
-
-const customer =
-this.customerService.getCustomer(input.userId);
+        const decision = this.decisionEngine.analyze(input.message);
 
 
-
-const decision =
-this.decisionEngine.analyze(
-input.message
-);
+        const approval = this.approvalEngine.check(decision);
 
 
+        if(approval.approved){
 
-const approval =
-this.approvalEngine.check(
-decision
-);
+            return this.salesExecutor.execute(input);
 
-
-
-const execution =
-await this.salesExecutor.execute(
-input
-);
+        }
 
 
+        return {
 
-return {
+            status:"WAITING_APPROVAL",
 
-customer,
+            decision,
 
-decision,
+            approval
 
-approval,
+        };
 
-execution,
-
-status:"PROCESSED",
-
-timestamp:new Date()
-
-};
-
-
-}
-
+    }
 
 }
