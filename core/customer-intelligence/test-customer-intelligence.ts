@@ -1,33 +1,52 @@
-import {CustomerMemory}
-from "./memory/customer-memory";
+import { CustomerMemory } from "./memory/customer-memory";
 
 
-const memory=new CustomerMemory();
+const memory = new CustomerMemory();
+
+
+
+console.log("🧠 CUSTOMER MEMORY TEST START");
+
 
 
 memory.save({
 
-id:"001",
+    id:"001",
 
-name:"مشتری تست",
+    name:"Ali",
 
-interests:[
-"میز مدیریت"
-],
+    phone:"09120000000",
 
-budget:"30 میلیون",
-
-purchaseStage:"HOT_LEAD",
-
-score:90,
-
-createdAt:new Date(),
-
-updatedAt:new Date()
+    budget:"5000000"
 
 });
 
 
+
 console.log(
-memory.find("001")
+    "SAVE:",
+    memory.get("001")
+);
+
+
+
+memory.update(
+    "001",
+    {
+        budget:"10000000"
+    }
+);
+
+
+
+console.log(
+    "UPDATE:",
+    memory.get("001")
+);
+
+
+
+console.log(
+    "ALL CUSTOMERS:",
+    memory.getAll()
 );

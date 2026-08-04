@@ -1,22 +1,17 @@
 export interface CustomerProfile {
 
-    id:string;
+    id: string;
 
-    name:string;
+    name: string;
 
-    interests:string[];
+    phone?: string;
 
-    budget?:string;
+    budget?: string;
 
-    purchaseStage:
-        | "NEW"
-        | "INTERESTED"
-        | "HOT_LEAD"
-        | "CUSTOMER";
+    email?: string;
 
-    score:number;
+    interests?: string[];
 
-    createdAt:Date;
+    createdAt?: Date;
 
-    updatedAt:Date;
 }
