@@ -6,11 +6,17 @@ export interface CustomerProfile {
 
     phone?: string;
 
-    budget?: string;
-
     email?: string;
 
-    interests?: string[];
+    budget?: string;
+
+    interests: string[];
+
+    purchaseStage:
+        | "NEW"
+        | "INTERESTED"
+        | "HOT_LEAD"
+        | "CUSTOMER";
 
     createdAt?: Date;
 
