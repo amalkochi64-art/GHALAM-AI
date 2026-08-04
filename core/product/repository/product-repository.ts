@@ -35,7 +35,7 @@ export class ProductRepository {
         return this.products.filter(product =>
             product.name.includes(keyword) ||
             product.category.includes(keyword) ||
-            product.tags?.includes(keyword) ?? false
+            (product.tags?.includes(keyword) ?? false)
         );
 
     }
