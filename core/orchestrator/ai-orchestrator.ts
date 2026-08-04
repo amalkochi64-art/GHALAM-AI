@@ -1,4 +1,3 @@
-
 import { DecisionEngine } from "../decision-engine/decision-engine";
 import { ApprovalEngine } from "../approval/approval-engine";
 import { SalesExecutor } from "../../agents/sales-agent/execution/sales-executor";
@@ -10,7 +9,7 @@ export class AIOrchestrator {
     private salesExecutor: SalesExecutor;
 
 
-    constructor(){
+    constructor() {
 
         this.decisionEngine = new DecisionEngine();
         this.approvalEngine = new ApprovalEngine();
@@ -19,15 +18,19 @@ export class AIOrchestrator {
     }
 
 
-    process(input:any){
+    process(input: any) {
 
-        const decision = this.decisionEngine.analyze(input.message);
+        const decision = this.decisionEngine.analyze(
+            input.message
+        );
 
 
-        const approval = this.approvalEngine.check(decision);
+        const approval = this.approvalEngine.check(
+            decision
+        );
 
 
-        if(approval.approved){
+        if (approval.approved) {
 
             return this.salesExecutor.execute(input);
 
@@ -36,7 +39,7 @@ export class AIOrchestrator {
 
         return {
 
-            status:"WAITING_APPROVAL",
+            status: "WAITING_APPROVAL",
 
             decision,
 
