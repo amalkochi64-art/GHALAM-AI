@@ -1,13 +1,37 @@
+import { Product } from "../models/product-model";
+
 export class InventoryEngine {
 
-    check(product:any){
+    checkStock(product: Product) {
 
         return {
             productId: product.id,
-            stock: product.stock ?? 0,
-            available: (product.stock ?? 0) > 0
+            productName: product.name,
+            stock: product.stock,
+            available: product.stock > 0
         };
 
+    }
+
+
+    isAvailable(product: Product): boolean {
+
+        return product.stock > 0;
+
+    }
+
+
+    getStockLevel(product: Product) {
+
+        if (product.stock === 0) {
+            return "OUT_OF_STOCK";
+        }
+
+        if (product.stock < 5) {
+            return "LOW_STOCK";
+        }
+
+        return "AVAILABLE";
     }
 
 }

@@ -1,12 +1,37 @@
+import { Product } from "../models/product-model";
+
 export class PricingEngine {
 
-    calculate(product:any){
+
+    getPrice(product: Product) {
 
         return {
             productId: product.id,
-            price: product.price,
-            discount: 0,
-            finalPrice: product.price
+            productName: product.name,
+            price: product.price
+        };
+
+    }
+
+
+    calculateDiscount(
+        price:number,
+        percent:number
+    ){
+
+        return price - (price * percent / 100);
+
+    }
+
+
+    comparePrice(
+        price:number,
+        competitor:number
+    ){
+
+        return {
+            cheaper: price < competitor,
+            difference: competitor - price
         };
 
     }
