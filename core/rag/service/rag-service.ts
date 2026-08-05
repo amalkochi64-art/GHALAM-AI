@@ -4,8 +4,14 @@
 export class RAGService {
 
 
-    private retriever =
-        new ProductRetriever();
+    private retriever: ProductRetriever;
+
+
+    constructor(){
+
+        this.retriever = new ProductRetriever();
+
+    }
 
 
 
@@ -39,12 +45,12 @@ export class RAGService {
             products,
 
             message:
-
-محصولات مرتبط:
-
-
-
-
+                "محصولات مرتبط:\n\n" +
+                products
+                .map(
+                    p => p.document.text
+                )
+                .join("\n")
 
         };
 
