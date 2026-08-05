@@ -1,5 +1,5 @@
-﻿import { ApprovalService } from "../admin/approval/service/approval-service";
-import { EventBus } from "../events/event-bus";
+﻿import { ApprovalService } from "../../admin/approval/service/approval-service";
+import { EventBus } from "../../events/event-bus";
 
 
 export class OfferWorkflow{
@@ -16,9 +16,11 @@ createOffer(
 data:any
 ){
 
+
 const approval=this.approval.requestApproval(
 "CREATE_OFFER"
 );
+
 
 
 this.events.emit(
@@ -28,6 +30,7 @@ offer:data,
 approval
 }
 );
+
 
 
 return {
