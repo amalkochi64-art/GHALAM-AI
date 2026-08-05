@@ -1,52 +1,49 @@
-import { DecisionEngine } from "../decision-engine/decision-engine";
-import { ApprovalEngine } from "../approval/approval-engine";
-import { SalesExecutor } from "../../agents/sales-agent/execution/sales-executor";
-
-export class AIOrchestrator {
-
-    private decisionEngine: DecisionEngine;
-    private approvalEngine: ApprovalEngine;
-    private salesExecutor: SalesExecutor;
+﻿import {ServiceContainer} from "../container/service-container";
 
 
-    constructor() {
-
-        this.decisionEngine = new DecisionEngine();
-        this.approvalEngine = new ApprovalEngine();
-        this.salesExecutor = new SalesExecutor();
-
-    }
+export class AIOrchestrator{
 
 
-    process(input: any) {
-
-        const decision = this.decisionEngine.analyze(
-            input.message
-        );
+constructor(
+private container=new ServiceContainer()
+){}
 
 
-        const approval = this.approvalEngine.check(
-            decision
-        );
+
+execute(
+intent:string,
+data:any
+){
 
 
-        if (approval.approved) {
-
-            return this.salesExecutor.execute(input);
-
-        }
+const decision=
+this.container.sales.process(intent);
 
 
-        return {
 
-            status: "WAITING_APPROVAL",
+this.container.events.emit(
+"AI_DECISION",
+decision
+);
 
-            decision,
 
-            approval
 
-        };
+if(
+decision.action==="CREATE_OFFER"
+){
 
-    }
+
+return this.container.offer.create(data);
+
+
+}
+
+
+
+return decision;
+
+
+}
+
 
 }
