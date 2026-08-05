@@ -1,33 +1,34 @@
-﻿import {CustomerProfile} from "./customer-profile";
+﻿import {CustomerRepository} from "../database/repository/customer-repository";
 
 
 export class CustomerProfileService{
 
 
-private customers:CustomerProfile[]=[];
+constructor(
+private repo=new CustomerRepository()
+){}
 
 
-create(profile:CustomerProfile){
 
-this.customers.push(profile);
+createProfile(data:any){
 
-return profile;
+return this.repo.create({
+
+...data,
+
+score:0,
+
+createdAt:new Date()
+
+});
 
 }
 
 
-find(id:string){
 
-return this.customers.find(
-c=>c.id===id
-);
+getProfile(id:string){
 
-}
-
-
-list(){
-
-return this.customers;
+return this.repo.find(id);
 
 }
 
