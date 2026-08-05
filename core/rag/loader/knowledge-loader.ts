@@ -1,41 +1,47 @@
-import { RAGService } from "../service/rag-service";
+ï»¿import { RAGService } from "../service/rag-service";
 
 
 export class KnowledgeLoader {
 
 
-    constructor(
-        private rag:RAGService
-    ){}
+constructor(
+private rag:RAGService
+){}
 
 
 
-    loadProducts(){
-
-        this.rag.addKnowledge(
-            "chair-001",
-            "ÕäÏáí ãÏíÑíÊí Ñãí ãÔ˜í¡ Çíå İáÒí¡ ãäÇÓÈ ãÏíÑÇä¡ ØÑÇÍí áæ˜Ó"
-        );
+loadProducts(){
 
 
-        this.rag.addKnowledge(
-            "chair-002",
-            "ÕäÏáí ˜ÇÑãäÏí ÇÑæäæãí˜¡ ÊäÙíã ÇÑÊİÇÚ¡ ãäÇÓÈ ÇÓÊİÇÏå ØæáÇäí"
-        );
+this.rag.addKnowledge(
+"chair-001",
+"ØµÙ†Ø¯Ù„ÛŒ Ù…Ø¯ÛŒØ±ÛŒØªÛŒ Ú†Ø±Ù…ÛŒ Ù…Ø´Ú©ÛŒ Ù¾Ø§ÛŒÙ‡ ÙÙ„Ø²ÛŒ Ø·Ø±Ø§Ø­ÛŒ Ù„ÙˆÚ©Ø³"
+);
 
 
-        this.rag.addKnowledge(
-            "desk-001",
-            "ãíÒ ãÏíÑíÊ MDF ÑÏæíí¡ ˜Ôæ Şİá ÏÇÑ¡ ØÑÇÍí ˜áÇÓí˜"
-        );
+
+this.rag.addKnowledge(
+"chair-002",
+"ØµÙ†Ø¯Ù„ÛŒ Ú©Ø§Ø±Ù…Ù†Ø¯ÛŒ Ø§Ø±Ú¯ÙˆÙ†ÙˆÙ…ÛŒÚ© ØªÙ†Ø¸ÛŒÙ… Ø§Ø±ØªÙØ§Ø¹ Ù…Ù†Ø§Ø³Ø¨ Ú©Ø§Ø± Ø·ÙˆÙ„Ø§Ù†ÛŒ"
+);
 
 
-        this.rag.addKnowledge(
-            "cabinet-001",
-            "˜ãÏ ÈÇíÇäí İáÒí¡ ãŞÇæã¡ ãäÇÓÈ ÓÇÒãÇä åÇ"
-        );
 
-    }
+this.rag.addKnowledge(
+"desk-001",
+"Ù…ÛŒØ² Ù…Ø¯ÛŒØ±ÛŒØª MDF Ú¯Ø±Ø¯ÙˆÛŒÛŒ Ú©Ø´ÙˆØ¯Ø§Ø± Ø·Ø±Ø§Ø­ÛŒ Ú©Ù„Ø§Ø³ÛŒÚ©"
+);
+
+
+
+this.rag.addKnowledge(
+"cabinet-001",
+"Ú©Ù…Ø¯ Ø¨Ø§ÛŒÚ¯Ø§Ù†ÛŒ ÙÙ„Ø²ÛŒ Ù…Ù‚Ø§ÙˆÙ… Ù…Ù†Ø§Ø³Ø¨ Ø³Ø§Ø²Ù…Ø§Ù† Ù‡Ø§"
+);
+
+
+
+}
 
 
 }

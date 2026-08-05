@@ -4,34 +4,34 @@
 export class ProductRetriever {
 
 
-    private memory =
-        new SemanticSearch();
+private memory =
+    new SemanticSearch();
 
 
 
-    addProduct(
-        id:string,
-        text:string
-    ){
+addProduct(
+    id:string,
+    text:string
+){
 
-        return this.memory.index(
-            id,
-            text
-        );
+    return this.memory.index(
+        id,
+        text
+    );
 
-    }
+}
 
 
 
-    search(
-        query:string
-    ){
+search(
+    query:string
+){
 
-        return this.memory.search(
-            query
-        );
+    return this.memory.search(
+        query
+    );
 
-    }
+}
 
 
 }
