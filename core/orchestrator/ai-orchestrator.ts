@@ -16,7 +16,7 @@ data:any
 ){
 
 
-const decision=
+const decision =
 this.container.sales.process(intent);
 
 
@@ -42,6 +42,19 @@ return this.container.offer.create(data);
 
 return decision;
 
+}
+
+
+
+
+process(
+input:any
+){
+
+return this.execute(
+input.intent ?? "unknown",
+input.data ?? input
+);
 
 }
 
