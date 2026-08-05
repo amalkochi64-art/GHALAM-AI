@@ -1,4 +1,4 @@
-﻿import {CustomerRepository} from "../database/repository/customer-repository";
+﻿import {CustomerRepository} from "../../database/repository/customer-repository";
 
 
 export class CustomerProfileService{
@@ -12,6 +12,7 @@ private repo=new CustomerRepository()
 
 createProfile(data:any){
 
+
 return this.repo.create({
 
 ...data,
@@ -21,6 +22,7 @@ score:0,
 createdAt:new Date()
 
 });
+
 
 }
 

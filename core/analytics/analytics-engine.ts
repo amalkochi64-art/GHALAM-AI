@@ -4,10 +4,12 @@
 private events:any[]=[];
 
 
+
 track(
 event:string,
 data:any
 ){
+
 
 this.events.push({
 
@@ -18,6 +20,7 @@ data,
 time:new Date()
 
 });
+
 
 }
 
@@ -33,7 +36,9 @@ events:this.events
 
 };
 
+
 }
+
 
 
 }
