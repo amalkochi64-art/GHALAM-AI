@@ -1,7 +1,11 @@
 ﻿import {ServiceContainer} from "../container/service-container";
+import {OfferWorkflow} from "../sales/offer/offer-workflow";
 
 
 export class AIOrchestrator{
+
+
+private workflow=new OfferWorkflow();
 
 
 constructor(
@@ -33,7 +37,9 @@ decision.action==="CREATE_OFFER"
 ){
 
 
-return this.container.offer.create(data);
+return this.workflow.createOffer(
+data
+);
 
 
 }
@@ -42,19 +48,22 @@ return this.container.offer.create(data);
 
 return decision;
 
+
 }
 
 
 
+process(input:any){
 
-process(
-input:any
-){
 
 return this.execute(
+
 input.intent ?? "unknown",
+
 input.data ?? input
+
 );
+
 
 }
 
