@@ -13,11 +13,14 @@ export class ResponseGenerator {
             context,
 
             answer:
-            
-ÈÑ ÇÓÇÓ ÇØáÇÚÇÊ ãæÌæÏ:
+`
+Ø¨Ø± Ø§Ø³Ø§Ø³ Ø§Ø·Ù„Ø§Ø¹Ø§Øª Ù…ÙˆØ¬ÙˆØ¯:
 
+${context
+.map(item => item.document.text)
+.join("\n")}
 
-
+`
 
         };
 
