@@ -11,15 +11,12 @@ private events:EventBus
 ){}
 
 
-
 createOffer(data:any){
-
 
 const approval =
 this.approval.requestApproval(
 "CREATE_OFFER"
 );
-
 
 
 this.events.emit(
@@ -29,7 +26,6 @@ offer:data,
 approval
 }
 );
-
 
 
 return {
@@ -44,7 +40,6 @@ approval
 
 
 }
-
 
 
 }

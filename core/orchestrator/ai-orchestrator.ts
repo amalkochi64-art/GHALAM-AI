@@ -7,13 +7,11 @@ export class AIOrchestrator{
 private container:ApplicationContainer;
 
 
-
 constructor(){
 
-this.container=new ApplicationContainer();
+this.container = new ApplicationContainer();
 
 }
-
 
 
 
@@ -36,13 +34,12 @@ decision
 
 
 if(
-decision.action==="CREATE_OFFER"
+decision.action === "CREATE_OFFER"
 ){
 
 return this.container.offerWorkflow.createOffer(
 data
 );
-
 
 }
 
@@ -55,9 +52,7 @@ return decision;
 
 
 
-
 process(input:any){
-
 
 return this.execute(
 
@@ -67,9 +62,7 @@ input.data ?? input
 
 );
 
-
 }
-
 
 
 }
