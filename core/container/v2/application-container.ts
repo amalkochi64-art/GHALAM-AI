@@ -11,41 +11,50 @@ export class ApplicationContainer{
 
 
 sales:SalesEngine;
+
 approval:ApprovalService;
+
 offerWorkflow:OfferWorkflow;
+
 events:EventBus;
+
 customer:CustomerProfileService;
+
 analytics:AnalyticsEngine;
+
 security:SecurityService;
+
 
 
 constructor(){
 
 
-this.events = new EventBus();
-
-this.approval = new ApprovalService();
+this.events=new EventBus();
 
 
-this.offerWorkflow = new OfferWorkflow(
+this.approval=new ApprovalService();
+
+
+this.offerWorkflow=new OfferWorkflow(
 this.approval,
 this.events
 );
 
 
-this.sales = new SalesEngine();
+this.sales=new SalesEngine();
 
 
-this.customer = new CustomerProfileService();
+this.customer=new CustomerProfileService();
 
 
-this.analytics = new AnalyticsEngine();
+this.analytics=new AnalyticsEngine();
 
 
-this.security = new SecurityService();
+this.security=new SecurityService();
 
 
 }
+
 
 
 }

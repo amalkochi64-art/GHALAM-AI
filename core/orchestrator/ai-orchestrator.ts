@@ -1,16 +1,19 @@
-﻿import {ServiceContainer} from "../container/service-container";
-import {OfferWorkflow} from "../sales/offer/offer-workflow";
+﻿import {ApplicationContainer} from "../container/v2/application-container";
 
 
 export class AIOrchestrator{
 
 
-private workflow=new OfferWorkflow();
+private container:ApplicationContainer;
 
 
-constructor(
-private container=new ServiceContainer()
-){}
+
+constructor(){
+
+this.container=new ApplicationContainer();
+
+}
+
 
 
 
@@ -36,8 +39,7 @@ if(
 decision.action==="CREATE_OFFER"
 ){
 
-
-return this.workflow.createOffer(
+return this.container.offerWorkflow.createOffer(
 data
 );
 
@@ -50,6 +52,7 @@ return decision;
 
 
 }
+
 
 
 
@@ -66,6 +69,7 @@ input.data ?? input
 
 
 }
+
 
 
 }
