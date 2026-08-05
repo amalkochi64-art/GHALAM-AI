@@ -1,4 +1,4 @@
-﻿import {SalesEngine} from "../../sales/sales-engine";
+﻿import {SalesEngine} from "../../sales/engine/sales-engine";
 import {OfferWorkflow} from "../../sales/offer/offer-workflow";
 import {ApprovalService} from "../../admin/approval/service/approval-service";
 import {EventBus} from "../../events/event-bus";
@@ -11,47 +11,38 @@ export class ApplicationContainer{
 
 
 sales:SalesEngine;
-
 approval:ApprovalService;
-
 offerWorkflow:OfferWorkflow;
-
 events:EventBus;
-
 customer:CustomerProfileService;
-
 analytics:AnalyticsEngine;
-
 security:SecurityService;
-
 
 
 constructor(){
 
 
-this.events=new EventBus();
+this.events = new EventBus();
+
+this.approval = new ApprovalService();
 
 
-this.approval=new ApprovalService();
-
-
-this.offerWorkflow=new OfferWorkflow(
+this.offerWorkflow = new OfferWorkflow(
 this.approval,
 this.events
 );
 
 
-
-this.sales=new SalesEngine();
-
-
-this.customer=new CustomerProfileService();
+this.sales = new SalesEngine();
 
 
-this.analytics=new AnalyticsEngine();
+this.customer = new CustomerProfileService();
 
 
-this.security=new SecurityService();
+this.analytics = new AnalyticsEngine();
+
+
+this.security = new SecurityService();
 
 
 }
